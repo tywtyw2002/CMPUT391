@@ -39,6 +39,8 @@ values (12, 'Connie', 'De''mico', '109 spooner street, Quahog,
 RI', 'Cdemico@gmail.com', '5713425467');
 
 insert into USERS
+values ('AAdams', 'AmSuperMan', 'a', 1, '01-JAN-1999');
+insert into USERS
 values ('MikeEvans', '12345', 'd', 2, '01-MAR-2000');
 insert into USERS
 values ('GBlake', 'abcdee', 'd', 3, '02-APR-2001');
