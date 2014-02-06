@@ -38,6 +38,40 @@ insert into persons
 values (12, 'Connie', 'De''mico', '109 spooner street, Quahog,
 RI', 'Cdemico@gmail.com', '5713425467');
 
+insert into USERS
+values ('MikeEvans', '12345', 'd', 2, '01-MAR-2000');
+insert into USERS
+values ('GBlake', 'abcdee', 'd', 3, '02-APR-2001');
+insert into USERS
+values ('CcStrong', 'SNLrocks', 'd', 4, '18-JUN-2004');
+
+insert into USERS
+values ('JScully', 'xfiles', 'p', 5, '28-JAN-2005');
+insert into USERS
+values ('Huffin!', 'Edmonton', 'p', 6, '12-AUG-2006');
+insert into USERS
+values ('DukeU', 'University', 'p', 7, '26-DEC-2005');
+insert into USERS
+values ('MelisaGeorge', 'IloveFG', 'p', 8, '31-AUG-2009');
+
+insert into USERS
+values ('JTilly', 'JTJT', 'r', 9, '12-NOV-2007');
+insert into USERS
+values ('MMAuthor', 'camelot', 'r', 10, '11-NOV-2009');
+insert into USERS
+values ('JBeal', 'LieToMe', 'r', 11, '28-FEB-2004');
+insert into USERS
+values ('ConnieG', 'griffin', 'r', 12, '13-MAY-2008');
+
+insert into FAMILY_DOCTOR
+values (4, 5);
+insert into FAMILY_DOCTOR
+values (2, 6);
+insert into FAMILY_DOCTOR
+values (2, 8);
+insert into FAMILY_DOCTOR
+values (3, 7);
+
 insert into RADIOLOGY_RECORD
 values (1, 5, 4, 10, 'Atest', '01-DEC-2013', '05-DEC-2013', 'Looks fine!', 
 'Drink more!');
