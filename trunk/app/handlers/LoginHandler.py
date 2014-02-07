@@ -8,7 +8,7 @@ Author: Tianyi Wu <tywtyw2002@gmail.com>
 
 """
 from wtforms import TextField, validators
-from app.lib.forms import Form
+from app.libs.forms import Form
 from BaseHandler import BaseHandler
 import hashlib
 
