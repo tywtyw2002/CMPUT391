@@ -1,0 +1,52 @@
+{% macro navitem(title, href, controller, value) -%}
+                  <li class=" {{ controller|shortif(value,' active')}}">
+                     <a href="{{ href }}">
+                     {{ title }}</a>
+                  </li>
+{%- endmacro %}
+      <!-- BEGIN SIDEBAR -->
+      <div class="page-sidebar navbar-collapse collapse">
+         <!-- BEGIN SIDEBAR MENU -->        
+         <ul class="page-sidebar-menu">
+            <li>
+               <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+               <div class="sidebar-toggler hidden-phone"></div>
+               <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+            </li>
+            <li>
+            </li>
+               
+            <li class="start{{ controller|shortif('index',' active')}}">
+               <a href="/">
+               <i class="icon-home"></i> 
+               <span class="title">Dashboard</span>
+               </a>
+            </li>
+
+            {% if user_level > 3 %}
+            <li class="{{ controller|shortif('index',' active')}}">
+               <a href="javascript:;">
+               <i class="icon-user"></i> 
+               <span class="title">User Management</span>
+               </a>
+            </li>
+
+            <li class="{{ controller|shortif('report',' active')}}">
+               <a href="javascript:;">
+               <i class="icon-th"></i> 
+               <span class="title">Generating Report</span>
+               </a>
+            </li>
+            {% endif %}
+
+            <li class="{{ controller|shortif('profile',' active')}}">
+               <a href="/profile">
+               <i class="icon-cogs"></i> 
+               <span class="title">Profile</span>
+               </a>
+            </li>
+
+         </ul>
+         <!-- END SIDEBAR MENU -->
+      </div>
+      <!-- END SIDEBAR -->

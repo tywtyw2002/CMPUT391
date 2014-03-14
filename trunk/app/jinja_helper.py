@@ -17,9 +17,16 @@ class Filters():
 
 	def register(self):
 		self.jinja2.filters['dump_errors'] = self.dump_errors
+		self.jinja2.filters['shortif'] = self.shortif
 
 		return self.jinja2
 
+
+	def shortif(self, var, value, text):
+		if var == value:
+			return text
+		else:
+			return ""
 
 	def dump_errors(self, errors):
 		t = self.jinja2.from_string("""

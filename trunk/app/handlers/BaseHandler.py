@@ -48,3 +48,12 @@ class BaseHandler(tornado.web.RequestHandler):
     @property
     def UserModel(self):
         return self.application.UserModel
+
+
+
+class DashHandler(BaseHandler):
+    @tornado.web.authenticated
+    def get(self, argkw = {} ):
+        argkw['user_level'] = 0;
+        argkw['user_name']  = self.get_secure_cookie("user") 
+        self.render("dashboard.html", **argkw)

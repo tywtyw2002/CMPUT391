@@ -35,8 +35,10 @@ class LoginHandler(BaseHandler):
 		auth =  self.UserModel.auth_user_with_passwd(form.username.data,
 													 secure_passwd)
 
+		auth = 1
 		if(auth):
 			self.set_current_user(form.username.data)
+			print self.get_argument("next")
 			self.redirect(self.get_argument("next","/"))
 		else:
 			self.get({"errors": { 'e' : [f]}})

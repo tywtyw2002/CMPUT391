@@ -17,4 +17,8 @@ class UserModel():
 
 	def get_user_by_name(self, name):
 
+		return 1
+
+
+	def auth_user_with_passwd(self, user, passwd):
 		return None

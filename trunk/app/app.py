@@ -49,7 +49,7 @@ class Application(tornado.web.Application):
 
 		#define model
 		#self.UserModel = model.UserModel.UserModel(self.db)
-
+		self.UserModel = model.UserModel.UserModel(None)
 
 def application():
 	tornado.options.parse_command_line()
