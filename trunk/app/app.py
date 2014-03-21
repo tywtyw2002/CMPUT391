@@ -11,6 +11,7 @@ from tornado.options import define, options
 import config
 from urls import urls
 from jinja2 import Environment, FileSystemLoader
+from libs.dbhelper import my_db 
 import model.UserModel
 
 
@@ -45,11 +46,11 @@ class Application(tornado.web.Application):
 
 
 		#init the database connection.
-		#self.db = 
+		self.db = my_db(config.host, config.user, config.password, config.sid)
 
 		#define model
-		#self.UserModel = model.UserModel.UserModel(self.db)
-		self.UserModel = model.UserModel.UserModel(None)
+		self.UserModel = model.UserModel.UserModel(self.db)
+		#self.UserModel = model.UserModel.UserModel(None)
 
 def application():
 	tornado.options.parse_command_line()

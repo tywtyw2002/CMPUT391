@@ -24,11 +24,18 @@
             </li>
 
             {% if user_level > 3 %}
-            <li class="{{ controller|shortif('index',' active')}}">
-               <a href="javascript:;">
+            <li class="{{ controller|shortif('manage',' active')}}">
+               <!-- <a href="javascript:;"> -->
+               <a href="/management">
                <i class="icon-user"></i> 
                <span class="title">User Management</span>
                </a>
+               <!--
+               <ul class="sub-menu">
+                  {{ navitem("Add User", "/manage/add", subcontroller, 'mangement_add')}}
+                  {{ navitem("User List", "/manage/list", subcontroller, 'mangement_list')}}
+               </ul> 
+               -->
             </li>
 
             <li class="{{ controller|shortif('report',' active')}}">

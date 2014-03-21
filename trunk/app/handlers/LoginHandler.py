@@ -24,21 +24,20 @@ class LoginHandler(BaseHandler):
 		form = LoginForm(self)
 		f = "Username or password is incorrect"
 
+
 		#check form first.
 		if not form.validate():
-			
-			self.get({"errors": { 'e' : [f]}})
+			self.get({"errors": { 'e' : form.errors}})
 			return
 
-		secure_passwd = hashlib.sha1(form.password.data).hexdigest()
-		
+		#secure_passwd = hashlib.sha1(form.password.data).hexdigest()
+		secure_passwd = form.password.data
+
 		auth =  self.UserModel.auth_user_with_passwd(form.username.data,
 													 secure_passwd)
 
-		auth = 1
 		if(auth):
 			self.set_current_user(form.username.data)
-			print self.get_argument("next")
 			self.redirect(self.get_argument("next","/"))
 		else:
 			self.get({"errors": { 'e' : [f]}})
@@ -61,11 +60,11 @@ class LoginForm(Form):
     f = "Username or password is incorrect"
     username = TextField('username', [
         validators.Required(message = "Username is Required"),
-        validators.Length(min = 4, message = f),
+        validators.Length(min = 4, message = "Username need > 4"),
     ])
 
     password = TextField('password', [
         validators.Required(message = "Password is Required"),
-        validators.Length(min = 6, message = f),
-    	validators.Length(max = 64, message = f),
+        validators.Length(min = 3, message = "Password need > 4"),
+    	validators.Length(max = 64, message = "Password need < 64"),
     ])

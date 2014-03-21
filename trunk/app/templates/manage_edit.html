@@ -1,0 +1,146 @@
+{% set controller = 'manage' %}
+{% set subcontroller = 'mangement_list' %}
+{% extends "layout.html"%}
+
+
+{% macro select(v, x, n ) -%}
+   {% if v == x %}
+     <option value="{{x}}" selected>{{ n }}</option>
+   {% else %}
+     <option value="{{x}}">{{ n }}</option>
+   {% endif %}
+{%- endmacro %}
+
+{% macro doctor_list(d, v) -%}
+
+   {% for u in d %}
+      <option value="{{u['person_id']}}" {{v|shortif(u['person_id'], 'selected')}}> {{ u['last_name'] }}, {{ u['first_name'] }}</option>
+   {% endfor %}
+{%- endmacro %}
+
+{% block page_end %}
+   <script src="/static/scripts/app.js"></script> 
+   <script>
+      jQuery(document).ready(function() {       
+         App.init();
+      });
+   </script>
+{% endblock %}
+
+{% block page_title %}
+User Management <small>User List</small>
+{% endblock %}
+
+
+{% block page_nav %}
+                  <li><a href="#">User Mangement</a></li>
+{% endblock %}
+
+{% block page_context %}
+            <!-- {{item["first_name"]}}-->
+						{{ errors | dump_errors }}
+                  {{ infos | dump_infos }}
+                 <div class="portlet box blue">
+                      <div class="portlet-title">
+                     {% if item["user_name"] %}
+                       <div class="caption"><i class="icon-reorder"></i>Edit User: {{ item["user_name"]}}</div>
+                       {% else %}
+                       <div class="caption"><i class="icon-reorder"></i>Add User</div>
+                       {% endif %}
+                    </div>
+                    <div class="portlet-body form">
+                       <!-- BEGIN FORM-->
+                       <form action="" method='post' class="form-horizontal">
+                       {{ xsrf_form_html() }}
+                          <div class="form-body">
+                             <div class="form-group">
+                                <label  class="col-md-3 control-label">User Name</label>
+                                <div class="col-md-4">
+                                   <input type="text" class="form-control" name="user_name" 
+                                   value='{{ item['user_name'] }}'>
+                                </div>
+                             </div>
+                             <div class="form-group">
+                                <label  class="col-md-3 control-label">Password</label>
+                                <div class="col-md-4">
+                                   <div class="input-group">
+                                      <input type="password" class="form-control" name='password'>
+                                      <span class="input-group-addon"><i class="icon-user"></i></span>
+                                   </div>
+                                   <span class="help-block">If do not change password, just leave blank.</span>
+                                </div>
+                             </div>
+                             <div class="form-group">
+                                <label  class="col-md-3 control-label">First Name</label>
+                                <div class="col-md-4">
+                                   <input type="text" class="form-control" name="first_name" 
+                                   value='{{ item['first_name'] }}'>
+                                </div>
+                             </div>
+                             <div class="form-group">
+                                <label  class="col-md-3 control-label">Last Name</label>
+                                <div class="col-md-4">
+                                   <input type="text" class="form-control" name="last_name" 
+                                   value='{{ item['last_name'] }}'>
+                                </div>
+                             </div>
+
+                             <div class="form-group">
+                                <label  class="col-md-3 control-label">Email Address</label>
+                                <div class="col-md-4">
+                                   <div class="input-group">
+                                      <span class="input-group-addon"><i class="icon-envelope"></i></span>
+                                      <input type="email" class="form-control" name='email' 
+                                      value='{{ item['email'] }}'>
+                                   </div>
+                                </div>
+                             </div>
+                             <div class="form-group">
+                                <label  class="col-md-3 control-label">Address</label>
+                                <div class="col-md-4">
+                                      <input type="text" class="form-control" name='address' 
+                                      value='{{ item['address'] }}'>
+                                </div>
+                             </div>
+                              <div class="form-group">
+                                <label  class="col-md-3 control-label">Phone</label>
+                                <div class="col-md-4">
+                                      <input type='text' class="form-control" name='phone' 
+                                      value='{{ item['phone'] }}'>
+                                </div>
+                             </div>
+
+                              <div class="form-group">
+                                <label  class="col-md-3 control-label">Class</label>
+                                <div class="col-md-4">
+                                      <select name='user_class' class="form-control">
+                                      {{ select(item['class'], 'p', 'Paitent')}}
+                                      {{ select(item['class'], 'a', 'Administrator')}}
+                                      {{ select(item['class'], 'r', 'Radiologist')}}
+                                      {{ select(item['class'], 'd', 'Doctor')}}
+                                      </select>
+                                </div>
+                             </div>
+                              <div class="form-group">
+                                <label  class="col-md-3 control-label">Family Doctor</label>
+                                <div class="col-md-4">
+                                      <select name='doctor_id' class="form-control">
+                                          <option value="0">None</option>
+                                          {{ doctor_list(doc_list, item["doctor_id"]) }}
+                                      </select>
+                                      <span class="help-block">If do not have family doctor, just leave blank.</span>
+
+                                </div>
+                             </div>
+
+                          </div>
+                          <div class="form-actions fluid">
+                             <div class="col-md-offset-3 col-md-9">
+                                <button type="submit" class="btn blue">Submit</button>
+                                <button type="button" class="btn default">Cancel</button>                              
+                             </div>
+                          </div>
+                       </form>
+                       <!-- END FORM--> 
+                    </div>
+{% endblock %}
